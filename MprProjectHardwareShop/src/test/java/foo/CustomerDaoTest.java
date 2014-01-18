@@ -7,10 +7,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import org.example.db.HsqlUnitOfWork;
+import org.example.db.MysqlUnitOfWork;
 import org.example.db.MockDb;
 import org.example.db.dao.CustomerDao;
-import org.example.db.dao.HsqlCustomerDao;
+import org.example.db.dao.MysqlCustomerDao;
 import org.example.shop.Customer;
 import org.junit.After;
 import org.junit.Before;
@@ -35,12 +35,12 @@ public class CustomerDaoTest {
 		Customer c = new Customer();
 		c.setNip("7441595385");
 		c.setName("Tescik");
-		c.setAdress("Testowa 34c/12");
+		c.setAdress("Testowa 34c");
 		c.setPhoneNumber("852963741");
 		try {
 
-			HsqlUnitOfWork uow = new HsqlUnitOfWork();
-			dao = new HsqlCustomerDao(uow);
+			MysqlUnitOfWork uow = new MysqlUnitOfWork();
+			dao = new MysqlCustomerDao(uow);
 			dao.save(c);
 			uow.commit();
 			drop = uow.getConnection().createStatement();

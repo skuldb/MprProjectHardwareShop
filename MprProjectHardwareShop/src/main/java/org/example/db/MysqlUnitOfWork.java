@@ -6,13 +6,13 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class HsqlUnitOfWork implements UnitOfWork{
+public class MysqlUnitOfWork implements UnitOfWork{
 
 	private Map<EntityBase, UnitOfWorkDao> added;
 	
 	Connection connection;
 	
-	public HsqlUnitOfWork()
+	public MysqlUnitOfWork()
 	{
 		added = new HashMap<EntityBase, UnitOfWorkDao>();
 		connection = getConnection();
@@ -24,7 +24,8 @@ public class HsqlUnitOfWork implements UnitOfWork{
 		{
 			if(connection==null||connection.isClosed())
 				connection = 
-				DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/workdb");
+				DriverManager.getConnection("jdbc:mysql://localhost/workdb?user=root&password=");
+			connection.setAutoCommit(false);
 		}catch(SQLException ex)
 		{
 			ex.printStackTrace();

@@ -10,11 +10,11 @@ import java.util.List;
 
 import org.example.db.DaoBase;
 import org.example.db.EntityBase;
-import org.example.db.HsqlUnitOfWork;
+import org.example.db.MysqlUnitOfWork;
 import org.example.db.UnitOfWork;
 import org.example.shop.Customer;
 
-public abstract class HsqlDaoBase<E extends EntityBase> 
+public abstract class MysqlDaoBase<E extends EntityBase> 
 	extends DaoBase<E>{
 
 	
@@ -26,7 +26,7 @@ public abstract class HsqlDaoBase<E extends EntityBase>
 	protected PreparedStatement select;
 	protected PreparedStatement selectId;
 	
-	protected HsqlDaoBase(HsqlUnitOfWork uow) {
+	protected MysqlDaoBase(MysqlUnitOfWork uow) {
 		super(uow);
 		try {
 			Connection connection = uow.getConnection();
